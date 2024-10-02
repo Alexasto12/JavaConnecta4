@@ -4,6 +4,7 @@ package connecta4;
 public class Table {
 int rows;
 int columns;
+char [][] grid;
 
 
 public Table(int rows, int columns) {
@@ -26,14 +27,19 @@ public void setColumns(int columns) {
     this.columns = columns;
 }
 
-public char[][] getArray() {
+
+
+/** Aquest metode omple l'array de espais vuits
+ * 
+ */
+public void getArray() {
     char [][] tableArray = new char [this.rows][this.columns];
     for (int i = 0; i < tableArray.length; i++) {
         for (int j = 0; j < tableArray[0].length; j++) {
             tableArray[i][j] = ' ';
         }
     }
-    return tableArray;
+    this.grid = tableArray.clone();
 
 }
 }
