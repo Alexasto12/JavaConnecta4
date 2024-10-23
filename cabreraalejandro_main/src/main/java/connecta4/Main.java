@@ -2,7 +2,19 @@ package connecta4;
 
 import java.util.Scanner;
 
+
+
+
 public class Main {
+public static final String RESET = "\u001B[0m";
+public static final String BLACK = "\u001B[30m";
+public static final String RED = "\u001B[31m";
+public static final String GREEN = "\u001B[32m";
+public static final String YELLOW = "\u001B[33m";
+public static final String BLUE = "\u001B[34m";
+public static final String PURPLE = "\u001B[35m";
+public static final String CYAN = "\u001B[36m";
+public static final String WHITE = "\u001B[37m";
     public static void main(String[] args) {
         // Utilizem la clase Scanner per llegir l'input de l'usuari
         Scanner input = new Scanner(System.in);
@@ -29,16 +41,31 @@ public class Main {
         do {
             boolean victoria = false;
             do{
-
-                System.out.println("Introdueix la columna on vols tirar:");
+                char fitxaJugador = game1.asignFitxa();
+                String jugador = null;
+                switch (fitxaJugador) {
+                    case '0':
+                    jugador = player1.getname() + BLUE;
+                        break;
+                    case 'X':
+                    jugador = player2.getname() + RED;
+                    default:
+                        break;
+                }
+                
+                game1.printTable(main_Table.grid);
+                System.out.println(jugador.toUpperCase() + " és el teu torn");
+                System.out.println("Introdueix la columna on vols tirar " + fitxaJugador + ":");
                 int selectedColumn = input.nextInt();
                 game1.tirada(main_Table.grid, selectedColumn);
-                game1.printTable(main_Table.grid);
-                victoria = game1.comprobarVictoria();
+                victoria = game1.comprovaVictoria();
             }while(!victoria);
+                
+
             System.out.println("Vols tornar a jugar? Y/N");
         } while (!game1.remakeGame(input.next()));
         
         
     }
 }
+
