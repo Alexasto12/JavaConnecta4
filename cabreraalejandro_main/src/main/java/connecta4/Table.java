@@ -26,9 +26,6 @@ public int getColumns() {
 public void setColumns(int columns) {
     this.columns = columns;
 }
-
-
-
 /** Aquest metode omple l'array de espais vuits
  * 
  */
