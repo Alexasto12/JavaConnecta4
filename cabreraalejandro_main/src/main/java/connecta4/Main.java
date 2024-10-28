@@ -63,21 +63,30 @@ public class Main {
                     selectedColumn = input.nextInt();
 
                 }
+                // Comprova si la columna està plena
                 while (game1.columnaPlena(selectedColumn)) {
                     System.out.println("La columna està plena, introdueix una altra columna");
                     selectedColumn = input.nextInt();
                 }
+                // Realitza la tirada en la columna seleccionada
                 game1.tirada(main_Table.grid, selectedColumn, fitxa);
+                // Imprimeix el taulell actualitzat
                 game1.printTable(main_Table.grid);
+                // Comprova si hi ha una victòria
                 victoria = game1.comprovaVictoria(fitxa);
+                // Comprova si hi ha un empat
                 empat = game1.comprovaEmpat();
-            } while (!victoria && !empat);
+            } while (!victoria && !empat); // Continua fins que hi hagi una victòria o un empat
+
+            // Si hi ha un empat, imprimeix el missatge d'empat
             if (empat) {
                 System.out.println("Empat!");
-                
-            }else{
+            } else {
+                // Si hi ha una victòria, imprimeix el missatge de victòria
                 System.out.println(jugador + " has guanyat!");
             }
+
+            // Actualitza el nombre de victòries del jugador guanyador
             if (player1.afegirVictoria(jugador)) {
                 System.out.println("El jugador " + player1.getName() + " té " + player1.getWins() + " victòries");
                 System.out.println("El jugador " + player2.getName() + " té " + player2.getWins() + " victòries");
@@ -87,9 +96,11 @@ public class Main {
                 System.out.println("El jugador " + player2.getName() + " té " + player2.getWins() + " victòries");
             }
 
+            // Pregunta si es vol tornar a jugar
             System.out.println("Vols tornar a jugar? Y/N");
-        } while (game1.remakeGame(input.next()));
+        } while (game1.remakeGame(input.next())); // Continua el bucle si la resposta és "Y"
 
+        // Tanca l'input
         input.close();
     }
 }
